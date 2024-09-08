@@ -5,11 +5,15 @@ const { Employee } = require("./Employee");
 const User = database.define('User', {
     role: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate:{
+        isIn: [['empleado', 'administrador']]
+      }
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     password: {
       type: DataTypes.STRING,
@@ -19,7 +23,10 @@ const User = database.define('User', {
 
   Employee.hasOne(User, {
     as: 'user',
-    foreignKey: 'employeeId',
+    foreignKey:{
+      name: 'employeeId',
+      allowNull: false
+    },
     onDelete: 'CASCADE'
   });
   User.belongsTo(Employee, {

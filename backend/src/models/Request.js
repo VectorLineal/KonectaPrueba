@@ -20,7 +20,8 @@ const Request = database.define('Request', {
   Employee.hasMany(Request, {
     as: 'request',
     foreignKey: 'employeeId',
-    onDelete: 'CASCADE'
+    onDelete: 'CASCADE',
+    allowNull: false
   });
   Request.belongsTo(Employee, {
     foreignKey: "employeeId",
