@@ -19,6 +19,16 @@ const getRequests = async () => {
 	}
 };
 
+const getRequestsByEmployee = async (employeeId) => {
+	try {
+		const requests = await Request.findAll({where: {employeeId}});
+		return requests;
+	} catch (e) {
+		throw new Error(e);
+	}
+};
+
+
 const getRequest = async (id) => {
 	try {
 		const request = await Request.findByPk(id);
@@ -39,6 +49,7 @@ const deleteRequest = async (id) => {
 module.exports = {
 	createRequest,
 	getRequests,
+	getRequestsByEmployee,
 	getRequest,
     deleteRequest
 };

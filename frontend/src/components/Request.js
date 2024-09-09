@@ -20,11 +20,8 @@ export function Request({ request, client }) {
   const onDelete = async () =>{
     await deleteNote(request.id);
     navigate("/requests");
-    window.location.reload();
   };
- 
-  let archiveText = "Archivate";
-  if(request.isArchived) archiveText = "Unarchivate";
+
   return (
     <div>
       <div>

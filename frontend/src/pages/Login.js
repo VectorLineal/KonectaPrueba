@@ -24,13 +24,20 @@ export function Login(){
 
     const tryLogin = async (content) => {
         try {
-            let response = await client.post('', content);
+            const response = await client.post('', content);
             console.log("response notes:", response);
             if(response.data.message === "success"){
-                setUserData(response.data.user);
-                setCurEmployee(response.data.user.employeeId);
+                const data = {
+                    username: response.data.user.username,
+                    role: response.data.user.role,
+                    employeeId: response.data.user.employeeId,
+                    token: response.data.token
+                }
+                setUserData(data);
+                setCurEmployee(data.employeeId);
                 let path = "/requests"
-                if(userData.role == "administrador") path = "/employees"
+                //console.log("logged user:", response.data.user);
+                if(data.role == "administrador") path = "/employees";
                 goToNewPage(path);
             }
         } catch (error) {

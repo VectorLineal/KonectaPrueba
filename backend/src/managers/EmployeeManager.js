@@ -22,7 +22,7 @@ const getEmployees = async () => {
 
 const getEmployee = async (id) => {
 	try {
-		const employee = await Employee.findByPk(id, {include: [{model: Request, as: "request"}]});
+		const employee = await Employee.findByPk(id);
 		return employee;
 	} catch (e) {
 		throw new Error(e);

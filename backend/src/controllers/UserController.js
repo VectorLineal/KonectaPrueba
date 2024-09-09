@@ -29,7 +29,7 @@ const login = async (req, res) => {
 				token: response.token,
 				message: "success",
 				user: {
-					name: response.user.username,
+					username: response.user.username,
 					role: response.user.role,
 					employeeId: response.user.employeeId
 				}

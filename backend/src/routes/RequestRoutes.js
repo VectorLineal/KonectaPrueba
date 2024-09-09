@@ -17,6 +17,10 @@ router.get("/requests", (req, res) => {
 	validateAuth({ req, res }, 0, RequestController.getRequests);
 });
 
+router.get("/requestsEmployee/:id", (req, res) => {
+	validateAuth({ req, res }, 0, RequestController.getRequestsByEmployee);
+});
+
 //a single request
 router.get("/requests/:id", (req, res) => {
 	validateAuth({ req, res }, 0, RequestController.getRequest);

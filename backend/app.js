@@ -1,6 +1,7 @@
 const express = require('express');
 const sanitizer = require("perfect-express-sanitizer");
 const cookieParser = require("cookie-parser");
+const cors = require('cors');
 
 require("dotenv").config();
 
@@ -12,9 +13,18 @@ const UserRoutes = require("./src/routes/UserRoutes");
 
 const app = express();
 const PORT = process.env.PORT;
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    exposedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
+    credentials: true,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 app.use(cookieParser());
 app.use(express.json());
+
+//enable cors, only for development, remove on production
+app.use(cors(corsOptions));
 
 //enables automatic sanitizer for all app's inputs
 app.use(

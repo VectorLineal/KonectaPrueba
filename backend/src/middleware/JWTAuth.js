@@ -11,7 +11,8 @@ const getRank = (role) =>{
 }
 
 exports.validateAuth = async ({ req, res }, rank, callback) => {
-	const token = req.cookies.token;
+	let token = req.cookies.token;
+    if(token == null) token = req.headers.authorization;
 	try {
 		const user = jwt.verify(token, process.env.MY_SECRET);
 		req.user = user;

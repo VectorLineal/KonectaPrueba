@@ -16,7 +16,7 @@ export function ContentForm({ buttonText, cancelText, cancelDestination, fields,
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("Texts:", state, "event:", event.target);
+        //console.log("Texts:", state, "event:", event.target);
         await clientOperation(state);
     }
     //simple content form for multiple text fields

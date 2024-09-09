@@ -8,7 +8,7 @@ import {Login} from './pages/Login';
 import {Register} from './pages/Register';
 
 function App() {
-  const [userData, setUserData] = useState({username: "", role: ""});
+  const [userData, setUserData] = useState({username: "", role: "", token: ""});
   const [curEmployee, setCurEmployee] = useState(-1);
 
   return (

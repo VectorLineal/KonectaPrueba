@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from 'react';
 import { userContext } from "../MyContext";
 import { RoleEdit } from "./RoleEdit";
+import { RequestList } from './RequestList';
 
-export function UserData({ employee, user }) {
+export function UserData({ employee, user, requests, client }) {
   const navigate = useNavigate();
   const { userData, setUserData } = useContext(userContext);
 
@@ -25,6 +26,9 @@ export function UserData({ employee, user }) {
         }
       </div>
       <CButton color="success" size='lg' onClick={goToNewPage}>View All Employees</CButton>
+      <div>
+        <RequestList employee={employee} requests={requests} client={client}/>
+      </div>
     </div>
   );
 }

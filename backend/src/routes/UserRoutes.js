@@ -28,7 +28,7 @@ router.get("/users/:id", (req, res) => {
 });
 
 router.get("/userEmployee/:id", (req, res) => {
-	validateAuth({ req, res }, 1, UserController.getUserByEmployee);
+	validateAuth({ req, res }, 0, UserController.getUserByEmployee);
 });
 
 
