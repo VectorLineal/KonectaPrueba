@@ -27,6 +27,11 @@ router.get("/users/:id", (req, res) => {
 	validateAuth({ req, res }, 1, UserController.getUser);
 });
 
+router.get("/userEmployee/:id", (req, res) => {
+	validateAuth({ req, res }, 1, UserController.getUserByEmployee);
+});
+
+
 //update
 //a single user
 router.put("/users/:id", (req, res) => {

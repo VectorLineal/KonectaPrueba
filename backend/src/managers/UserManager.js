@@ -3,6 +3,7 @@ const { User } = require("../models/User");
 const { Employee } = require("../models/Employee");
 const {hash, validate} = require("../middleware/hash");
 const jwt = require("jsonwebtoken");
+const { where } = require("sequelize");
 
 const createUser = async (data) => {
 	try {
@@ -18,17 +19,18 @@ const createUser = async (data) => {
 const login = async (data) => {
 	try {
 		const curUser = await User.findOne({where: { username: data.username }});
-		if (!curUser) return "";
+		if (!curUser) return {token: ""};
 
 		const isValid = await validate(data.password, curUser.password);
 
-		if (!isValid) return "";
+		if (!isValid) return {token: ""};
 
 		const token = jwt.sign({
 			username: curUser.username,
 			role: curUser.role
-		}, process.env.MY_SECRET, { expiresIn: "300s" });
-		return token;
+		}, process.env.MY_SECRET, { expiresIn: "20m" });
+
+		return {token, user: curUser};
 	} catch (e) {
 		throw new Error(e);
 	}
@@ -46,6 +48,15 @@ const getUsers = async () => {
 const getUser = async (id) => {
 	try {
 		const user = await User.findByPk(id, {include: Employee} );
+		return user;
+	} catch (e) {
+		throw new Error(e);
+	}
+};
+
+const getUserByEmployee = async (employeeId) => {
+	try {
+		const user = await User.findOne({where: {employeeId}});
 		return user;
 	} catch (e) {
 		throw new Error(e);
@@ -77,6 +88,7 @@ module.exports = {
 	login,
 	getUsers,
 	getUser,
+	getUserByEmployee,
     updateUser,
     deleteUser
 };
