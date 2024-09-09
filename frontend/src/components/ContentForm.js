@@ -8,7 +8,7 @@ export function ContentForm({ buttonText, cancelText, cancelDestination, fields,
     const state = {};
     //set up the state for each form field
     for(let i = 0; i < fields.length; i++){
-        state[fields[i].stateValue] = fields.value;
+        state[fields[i].stateValue] = fields[i].value;
     }
 
     const cancelForm = () => {

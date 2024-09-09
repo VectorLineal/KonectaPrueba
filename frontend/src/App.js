@@ -6,6 +6,7 @@ import { Employees } from './pages/Employees';
 import { Requests } from './pages/Requests';
 import {Login} from './pages/Login';
 import {Register} from './pages/Register';
+import {AddRequest} from "./pages/AddRequest";
 
 function App() {
   const [userData, setUserData] = useState({username: "", role: "", token: ""});
@@ -21,6 +22,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/requests" element={<Requests />}/>
             <Route path="/employees" element={<Employees />}/>
+            <Route path="/addRequest" element={<AddRequest />}/>
           </Routes>
         </userContext.Provider>
       </employeeContext.Provider>

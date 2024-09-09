@@ -10,8 +10,12 @@ export function Request({ request, client }) {
 
   const deleteNote = async (id) => {
     try {
-      let response = await client.delete('/requests/' + id);
-      console.log("response deletion:", response);
+      let response = await client.delete('requests/' + id, {
+        headers: {
+          Authorization: userData.token
+        }
+      });
+      console.log("response deletion:", response.status);
      
     } catch (error) {
         console.log("error:", error);
@@ -19,7 +23,7 @@ export function Request({ request, client }) {
   };
   const onDelete = async () =>{
     await deleteNote(request.id);
-    navigate("/requests");
+    navigate("/employees");
   };
 
   return (
