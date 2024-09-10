@@ -19,20 +19,30 @@ export function Register(){
         {label: "Password", stateValue: "password", value: "", type: "password"}
     ]
 
+    /*
+{
+"name":"Nicolas",
+"salary":"4000",
+"username":"superuser",
+"password":"superuser",
+"role":"administrador"
+
+}
+
+
+
+*/
+
     const tryRegister = async (content) => {
         try {
-            const employee = await client.post('/employees', {name: content.name, salary: content.salary});
-            console.log("response employee:", employee);
-            const employeeId = employee.data.id;
-            if(employeeId !== null){
-                const user = await client.post('/users', {
-                    username: content.username,
-                    password: content.password,
-                    role: "empleado",
-                    employeeId
-                });
-                if(user.data !== null) goToNewPage();
-            }
+            const user = await client.post('/users', {
+                name: content.name,
+                salary: content.salary,
+                username: content.username,
+                password: content.password,
+                role: "empleado"
+            });
+            if(user.data !== null) goToNewPage();
         } catch (error) {
             console.log("error:", error);
         }

@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:latest
+    hostname: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${DATABASE_USER:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-hardPassword1317}
+      POSTGRES_DB: ${POSTGRES_DB:-konecta}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend/
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    command: "curl 'http://backend:3001/api/users' -X POST -H 'Content-Type: application/json' --data @default_admin.user.json && npm start"
+
+  backend:
+    build: ./backend/
+    depends_on:
+      - postgres
+    environment:
+      PORT: ${PORT:-3001}
+      DATABASE_NAME: ${DATABASE_NAME:-konecta}
+      DATABASE_USER: ${DATABASE_USER:-postgres}
+      DATABASE_HOST: ${DATABASE_HOST:-postgres}
+      DATABASE_PORT: ${DATABASE_PORT:-5432}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-hardPassword1317}
+      MY_SECRET: ${MY_SECRET:-g872901jfn19731uh392}
+      ALLOW_ORIGIN: http://localhost:3000
+
+    ports:
+      - 3001:${PORT:-3001}
+    
+volumes:
+  postgres-data:

@@ -1,6 +1,7 @@
 const express = require("express");
 // Controllers
 const UserController = require("../controllers/UserController");
+const EmployeeController = require("../controllers/EmployeeController");
 //Auth
 const { validateAuth } = require("../middleware/JWTAuth");
 

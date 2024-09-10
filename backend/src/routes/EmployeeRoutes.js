@@ -6,11 +6,6 @@ const { validateAuth } = require("../middleware/JWTAuth");
 
 const router = express.Router();
 
-//create
-router.post("/employees", (req, res) => {
-	EmployeeController.createEmployee(req, res);
-});
-
 //read
 //all employees
 router.get("/employees", (req, res) => {

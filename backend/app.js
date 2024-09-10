@@ -12,9 +12,9 @@ const RequestRoutes = require("./src/routes/RequestRoutes");
 const UserRoutes = require("./src/routes/UserRoutes");
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || "3001";
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: process.env.ALLOW_ORIGIN,
     exposedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
     credentials: true,
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
