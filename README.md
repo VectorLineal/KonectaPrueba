@@ -6,10 +6,10 @@ Prueba técnica para Konecta
 
 ##Pasos de instalación y ejecución
 - Activar Docker.
-- En el root del proyecto ejecutar ´docker compose --env-file .env up --build´.
+- En el root del proyecto ejecutar `docker compose --env-file .env up --build`.
 
 ###Consideraciones
-- Este proyecto fue creado para usarse en localhost por lo tanto, la aplicación debería desplegarse en ´localhost:3000´.
+- Este proyecto fue creado para usarse en localhost por lo tanto, la aplicación debería desplegarse en `localhost:3000`.
 - El superusuario creado en la base de datos tiene usuario: superuser y clave: superuser. Dicho usuario es el único administrador creado, por defecto todo usuario creado tendrá rol de empleado, solo un administrador puede cambiar dichos roles.
 ##Prácticas
 - Se siguió una arquitectura MVC.
