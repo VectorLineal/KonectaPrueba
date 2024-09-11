@@ -18,7 +18,7 @@ services:
       - backend
     ports:
       - 3000:3000
-    command: "curl 'http://backend:3001/api/users' -X POST -H 'Content-Type: application/json' --data @default_admin.user.json && npm start"
+    command: "(curl 'http://backend:3001/api/users' -X POST -H 'Content-Type: application/json' --data @default_admin.user.json || true) && npm start"
 
   backend:
     build: ./backend/
